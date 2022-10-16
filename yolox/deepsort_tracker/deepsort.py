@@ -167,9 +167,7 @@ class DeepSort(object):
         self.tracker = Tracker(
             metric, max_iou_distance=max_iou_distance, max_age=max_age, n_init=n_init)
 
-    def update(self, output_results, img_info, img_size, img_file_name):
-        img_file_name = os.path.join(get_yolox_datadir(), 'mot', 'train', img_file_name)
-        ori_img = cv2.imread(img_file_name)
+    def update(self, output_results, img_info, img_size, ori_img):
         self.height, self.width = ori_img.shape[:2]
         # post process detections
         output_results = output_results.cpu().numpy()
